@@ -1,7 +1,9 @@
 package com.asaria.tictactoe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -11,95 +13,96 @@ public class board extends AppCompatActivity {
 
     Integer Xwon = 0,Owon = 0; //0 for false
 
-    int arrayXCounter = 0,arrayOCounter = 0; //counter of elements in the arrays
-    int[] arrayX = new int[5];
+    Integer arrayXCounter = 0,arrayOCounter = 0; //counter of elements in the arrays
+    int[] arrayX = new int[50];
     int[] arrayO = new int[5];
 
 
     //checks if the arrangement of any symbol results in a win and if so sets its flag to 1
     public  void checkWinner(int first,int second,int third,Integer whoWon){
-
+        Log.d("checkWinner","checkWinner Executed");
         if(first == 1){
 
+
             if((second == 2 && third == 3)||(second == 3 && third == 2)){
-                whoWon = 1;
+                Xwon = 1;
 
             }else if((second == 4 && third == 7)||(second == 7 && third == 4)){
-                whoWon = 1;
+                Xwon = 1;
             }else if((second == 5 && third == 9)||(second == 9 && third == 5)){
-                whoWon = 1;
+                Xwon = 1;
             }
         }else if(first == 2){
 
             if((second == 1 && third == 3)||(second == 3 && third == 1)){
-                whoWon = 1;
+                Xwon = 1;
 
             }else if((second == 5 && third == 8)||(second == 8 && third == 5)){
-                whoWon = 1;
+                Xwon = 1;
             }
         }else if(first == 3){
 
             if((second == 1 && third == 2)||(second == 2 && third == 1)){
-                whoWon = 1;
+                Xwon = 1;
 
             }else if((second == 6 && third == 9)||(second == 9 && third == 6)){
-                whoWon = 1;
+                Xwon = 1;
             }else if((second == 5 && third == 7)||(second == 7 && third == 5)){
-                whoWon = 1;
+                Xwon = 1;
             }
         }else if(first == 4){
 
             if((second == 1 && third == 7)||(second == 7 && third == 1)){
-                whoWon = 1;
+                Xwon = 1;
 
             }else if((second == 5 && third == 6)||(second == 6 && third == 5)){
-                whoWon = 1;
+                Xwon = 1;
             }
         }else if(first == 5){
 
             if((second == 4 && third == 6)||(second == 6 && third == 4)){
-                whoWon = 1;
+                Xwon = 1;
 
             }else if((second == 3 && third == 7)||(second == 7 && third == 3)){
-                whoWon = 1;
+                Xwon = 1;
             }else if((second == 1 && third == 9)||(second == 9 && third == 1)){
-                whoWon = 1;
+                Xwon = 1;
             }
         }else if(first == 6){
 
             if((second == 9 && third == 3)||(second == 3 && third == 9)){
-                whoWon = 1;
+                Xwon = 1;
 
             }else if((second == 4 && third == 5)||(second == 5 && third == 4)){
-                whoWon = 1;
+                Xwon = 1;
             }
         }else if(first == 7){
 
             if((second == 5 && third == 3)||(second == 3 && third == 5)){
-                whoWon = 1;
+                Xwon = 1;
 
             }else if((second == 4 && third == 1)||(second == 1 && third == 4)){
-                whoWon = 1;
+                Xwon = 1;
             }else if((second == 8 && third == 9)||(second == 9 && third == 8)){
-                whoWon = 1;
+                Xwon = 1;
             }
         }else if(first == 8){
 
             if((second == 2 && third == 5)||(second == 5 && third == 2)){
-                whoWon = 1;
+                Xwon = 1;
 
             }else if((second == 9 && third == 7)||(second == 7 && third == 9)){
-                whoWon = 1;
+                Xwon = 1;
             }
         }else if(first == 9){
 
             if((second == 6 && third == 3)||(second == 3 && third == 6)){
-                whoWon = 1;
+                Xwon = 1;
 
             }else if((second == 8 && third == 7)||(second == 7 && third == 8)){
-                whoWon = 1;
+                Xwon = 1;
             }else if((second == 5 && third == 1)||(second == 1 && third == 5)){
-                whoWon = 1;
+                Xwon = 1;
             }
         }
 
@@ -107,18 +110,49 @@ public class board extends AppCompatActivity {
 
     //to check if the arrangements of X is a win
     public void runCheckWinnerForX(){
-        if(arrayX.length == 3){
-            checkWinner(arrayX[0],arrayX[1],arrayX[2],Xwon);
-        }else if(arrayX.length == 4){
-            checkWinner(arrayX[0],arrayX[1],arrayX[2],Xwon);
 
+        Log.d("runCheckWinnerForX","runCheckWinnerForX Executed");
+
+    /*    checkWinner(arrayX[0],arrayX[1],arrayX[2],Xwon);
+        Log.d("arrayX.length","L 3");
+
+
+        Log.d("arrayX.length","L 4");
+        if(Xwon != 1){
+            checkWinner(arrayX[0],arrayX[2],arrayX[4],Xwon);
+            checkWinner(arrayX[1],arrayX[2],arrayX[3],Xwon);
+
+
+        }
+
+        checkWinner(arrayX[0],arrayX[1],arrayX[2],Xwon); //1,2,3
+        checkWinner(arrayX[0],arrayX[1],arrayX[3],Xwon); //1,2,4
+        checkWinner(arrayX[0],arrayX[1],arrayX[4],Xwon); //1,2,5
+        checkWinner(arrayX[0],arrayX[2],arrayX[3],Xwon); //1,3,4
+        checkWinner(arrayX[0],arrayX[2],arrayX[4],Xwon); //1,3,5
+        checkWinner(arrayX[0],arrayX[3],arrayX[4],Xwon); //1,4,5
+        checkWinner(arrayX[1],arrayX[2],arrayX[3],Xwon); //2,3,4
+        checkWinner(arrayX[1],arrayX[3],arrayX[4],Xwon); //2,3,5
+        checkWinner(arrayX[1],arrayX[3],arrayX[4],Xwon); //2,4,5
+        checkWinner(arrayX[2],arrayX[4],arrayX[5],Xwon); //3,4,5
+
+        Log.d("arrayX.length","L 5");*/
+
+
+       if(arrayXCounter == 3){
+            checkWinner(arrayX[0],arrayX[1],arrayX[2],Xwon);
+            Log.d("arrayX.length","L 3");
+        }else if(arrayXCounter == 4){
+            checkWinner(arrayX[0],arrayX[1],arrayX[2],Xwon);
+            Log.d("arrayX.length","L 4");
             if(Xwon != 1){
-                checkWinner(arrayX[0],arrayX[2],arrayX[4],Xwon);
+                checkWinner(arrayX[0],arrayX[1],arrayX[3],Xwon);
+                checkWinner(arrayX[0],arrayX[2],arrayX[3],Xwon);
                 checkWinner(arrayX[1],arrayX[2],arrayX[3],Xwon);
 
 
             }
-        }else if(arrayX.length == 5){
+        }else if(arrayXCounter == 5){
             checkWinner(arrayX[0],arrayX[1],arrayX[2],Xwon); //1,2,3
             checkWinner(arrayX[0],arrayX[1],arrayX[3],Xwon); //1,2,4
             checkWinner(arrayX[0],arrayX[1],arrayX[4],Xwon); //1,2,5
@@ -129,6 +163,8 @@ public class board extends AppCompatActivity {
             checkWinner(arrayX[1],arrayX[3],arrayX[4],Xwon); //2,3,5
             checkWinner(arrayX[1],arrayX[3],arrayX[4],Xwon); //2,4,5
             checkWinner(arrayX[2],arrayX[4],arrayX[5],Xwon); //3,4,5
+
+            Log.d("arrayX.length","L 5");
         }
 
     }
@@ -189,24 +225,7 @@ public class board extends AppCompatActivity {
 
     }
 
-    public void clickedBtn1(View view){
 
-        if(symbol.equals("X")){
-            arrayX[arrayXCounter++]=1;
-
-            if(arrayX.length >= 3){
-                runCheckWinnerForX();
-
-            }
-
-        }else{
-            arrayO[arrayOCounter++] = 1;
-            if(arrayO.length >= 3){
-                runCheckWinnerForO();
-
-            }
-        }
-    }
 
     public void clickedBtn2(View view){
 
@@ -225,14 +244,20 @@ public class board extends AppCompatActivity {
 
             }
         }
+
+        buts[1].setText(symbol);
     }
 
     public void clickedBtn3(View view){
 
         if(symbol.equals("X")){
             arrayX[arrayXCounter++]=3;
-
+            runCheckWinnerForX();
         }else arrayO[arrayOCounter++] = 3;
+
+        buts[2].setText(symbol);
+        Log.d("Xwon",Xwon.toString());
+        Log.d("arrayXCounter",arrayXCounter.toString());
     }
 
     public void clickedBtn4(View view){
@@ -241,6 +266,11 @@ public class board extends AppCompatActivity {
             arrayX[arrayXCounter++]=4;
 
         }else arrayO[arrayOCounter++] = 4;
+
+        buts[3].setText(symbol);
+
+        Log.d("Xwon",Xwon.toString());
+        Log.d("arrayXCounter",arrayXCounter.toString());
     }
 
     public void clickedBtn5(View view){
@@ -248,7 +278,15 @@ public class board extends AppCompatActivity {
         if(symbol.equals("X")){
             arrayX[arrayXCounter++]=5;
 
+            if(arrayX.length >= 3){
+                runCheckWinnerForX();
+
+            }
+
+
         }else arrayO[arrayOCounter++] = 5;
+
+        buts[4].setText(symbol);
     }
 
     public void clickedBtn6(View view){
@@ -256,7 +294,17 @@ public class board extends AppCompatActivity {
         if(symbol.equals("X")){
             arrayX[arrayXCounter++]=6;
 
+            if(arrayX.length >= 3){
+                runCheckWinnerForX();
+
+            }
+
         }else arrayO[arrayOCounter++] = 6;
+
+        buts[5].setText(symbol);
+
+        Log.d("Xwon",Xwon.toString());
+        Log.d("arrayXCounter",arrayXCounter.toString());
     }
 
     public void clickedBtn7(View view){
@@ -264,7 +312,17 @@ public class board extends AppCompatActivity {
         if(symbol.equals("X")){
             arrayX[arrayXCounter++]=7;
 
+            if(arrayX.length >= 3){
+                runCheckWinnerForX();
+
+            }
+
         }else arrayO[arrayOCounter++] = 7;
+
+        buts[6].setText(symbol);
+
+        Log.d("Xwon",Xwon.toString());
+        Log.d("arrayXCounter",arrayXCounter.toString());
     }
 
     public void clickedBtn8(View view){
@@ -272,7 +330,19 @@ public class board extends AppCompatActivity {
         if(symbol.equals("X")){
             arrayX[arrayXCounter++]=8;
 
+            if(arrayX.length >= 3){
+                runCheckWinnerForX();
+
+            }
+
+
+
         }else arrayO[arrayOCounter++] = 8;
+
+        buts[7].setText(symbol);
+
+        Log.d("Xwon",Xwon.toString());
+        Log.d("arrayXCounter",arrayXCounter.toString());
     }
 
     public void clickedBtn9(View view){
@@ -280,6 +350,45 @@ public class board extends AppCompatActivity {
         if(symbol.equals("X")){
             arrayX[arrayXCounter++]=9;
 
+            if(arrayX.length >= 3){
+                runCheckWinnerForX();
+
+            }
+
         }else arrayO[arrayOCounter++] = 9;
+
+        buts[8].setText(symbol);
+
+        if(Xwon == 1){
+
+            startActivity(new Intent(this,board5.class));
+        }
+        Log.d("Xwon",Xwon.toString());
+        Log.d("arrayXCounter",arrayXCounter.toString());
+    }
+
+    public void clickedBtn1(View view){
+
+        if(symbol.equals("X")){
+            arrayX[arrayXCounter++]=1; //add the int 1 to arrayX
+
+            Button bt1 = (Button) findViewById(R.id.btn1);
+            bt1.setText(symbol);
+
+            if(arrayX.length >= 3){
+                runCheckWinnerForX();
+
+            }
+
+        }else{
+            arrayO[arrayOCounter++] = 1;
+            if(arrayO.length >= 3){
+                runCheckWinnerForO();
+
+            }
+        }
+
+        Log.d("Xwon",Xwon.toString());
+        Log.d("arrayXCounter",arrayXCounter.toString());
     }
 }
