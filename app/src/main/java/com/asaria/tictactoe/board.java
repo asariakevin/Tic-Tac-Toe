@@ -2,12 +2,164 @@ package com.asaria.tictactoe;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 
 public class board extends AppCompatActivity {
     Button[] buts = new Button[15];
-    String symbol = "X";
-    
+    String symbol = "X"; //default symbol
+
+    Integer Xwon = 0,Owon = 0; //0 for false
+
+    int arrayXCounter = 0,arrayOCounter = 0; //counter of elements in the arrays
+    int[] arrayX = new int[5];
+    int[] arrayO = new int[5];
+
+
+    //checks if the arrangement of any symbol results in a win and if so sets its flag to 1
+    public  void checkWinner(int first,int second,int third,Integer whoWon){
+
+        if(first == 1){
+
+            if((second == 2 && third == 3)||(second == 3 && third == 2)){
+                whoWon = 1;
+
+            }else if((second == 4 && third == 7)||(second == 7 && third == 4)){
+                whoWon = 1;
+            }else if((second == 5 && third == 9)||(second == 9 && third == 5)){
+                whoWon = 1;
+            }
+        }else if(first == 2){
+
+            if((second == 1 && third == 3)||(second == 3 && third == 1)){
+                whoWon = 1;
+
+            }else if((second == 5 && third == 8)||(second == 8 && third == 5)){
+                whoWon = 1;
+            }
+        }else if(first == 3){
+
+            if((second == 1 && third == 2)||(second == 2 && third == 1)){
+                whoWon = 1;
+
+            }else if((second == 6 && third == 9)||(second == 9 && third == 6)){
+                whoWon = 1;
+            }else if((second == 5 && third == 7)||(second == 7 && third == 5)){
+                whoWon = 1;
+            }
+        }else if(first == 4){
+
+            if((second == 1 && third == 7)||(second == 7 && third == 1)){
+                whoWon = 1;
+
+            }else if((second == 5 && third == 6)||(second == 6 && third == 5)){
+                whoWon = 1;
+            }
+        }else if(first == 5){
+
+            if((second == 4 && third == 6)||(second == 6 && third == 4)){
+                whoWon = 1;
+
+            }else if((second == 3 && third == 7)||(second == 7 && third == 3)){
+                whoWon = 1;
+            }else if((second == 1 && third == 9)||(second == 9 && third == 1)){
+                whoWon = 1;
+            }
+        }else if(first == 6){
+
+            if((second == 9 && third == 3)||(second == 3 && third == 9)){
+                whoWon = 1;
+
+            }else if((second == 4 && third == 5)||(second == 5 && third == 4)){
+                whoWon = 1;
+            }
+        }else if(first == 7){
+
+            if((second == 5 && third == 3)||(second == 3 && third == 5)){
+                whoWon = 1;
+
+            }else if((second == 4 && third == 1)||(second == 1 && third == 4)){
+                whoWon = 1;
+            }else if((second == 8 && third == 9)||(second == 9 && third == 8)){
+                whoWon = 1;
+            }
+        }else if(first == 8){
+
+            if((second == 2 && third == 5)||(second == 5 && third == 2)){
+                whoWon = 1;
+
+            }else if((second == 9 && third == 7)||(second == 7 && third == 9)){
+                whoWon = 1;
+            }
+        }else if(first == 9){
+
+            if((second == 6 && third == 3)||(second == 3 && third == 6)){
+                whoWon = 1;
+
+            }else if((second == 8 && third == 7)||(second == 7 && third == 8)){
+                whoWon = 1;
+            }else if((second == 5 && third == 1)||(second == 1 && third == 5)){
+                whoWon = 1;
+            }
+        }
+
+    }
+
+    //to check if the arrangements of X is a win
+    public void runCheckWinnerForX(){
+        if(arrayX.length == 3){
+            checkWinner(arrayX[0],arrayX[1],arrayX[2],Xwon);
+        }else if(arrayX.length == 4){
+            checkWinner(arrayX[0],arrayX[1],arrayX[2],Xwon);
+
+            if(Xwon != 1){
+                checkWinner(arrayX[0],arrayX[2],arrayX[4],Xwon);
+                checkWinner(arrayX[1],arrayX[2],arrayX[3],Xwon);
+
+
+            }
+        }else if(arrayX.length == 5){
+            checkWinner(arrayX[0],arrayX[1],arrayX[2],Xwon); //1,2,3
+            checkWinner(arrayX[0],arrayX[1],arrayX[3],Xwon); //1,2,4
+            checkWinner(arrayX[0],arrayX[1],arrayX[4],Xwon); //1,2,5
+            checkWinner(arrayX[0],arrayX[2],arrayX[3],Xwon); //1,3,4
+            checkWinner(arrayX[0],arrayX[2],arrayX[4],Xwon); //1,3,5
+            checkWinner(arrayX[0],arrayX[3],arrayX[4],Xwon); //1,4,5
+            checkWinner(arrayX[1],arrayX[2],arrayX[3],Xwon); //2,3,4
+            checkWinner(arrayX[1],arrayX[3],arrayX[4],Xwon); //2,3,5
+            checkWinner(arrayX[1],arrayX[3],arrayX[4],Xwon); //2,4,5
+            checkWinner(arrayX[2],arrayX[4],arrayX[5],Xwon); //3,4,5
+        }
+
+    }
+
+
+    public void runCheckWinnerForO(){
+        if(arrayO.length == 3){
+            checkWinner(arrayO[0],arrayO[1],arrayO[2],Owon);
+        }else if(arrayO.length == 4){
+            checkWinner(arrayO[0],arrayO[1],arrayO[2],Owon);
+
+            if(Owon != 1){
+                checkWinner(arrayO[0],arrayO[2],arrayO[4],Owon);
+                checkWinner(arrayO[1],arrayO[2],arrayO[3],Owon);
+
+
+            }
+        }else if(arrayO.length == 5){
+            checkWinner(arrayO[0],arrayO[1],arrayO[2],Owon); //1,2,3
+            checkWinner(arrayO[0],arrayO[1],arrayO[3],Owon); //1,2,4
+            checkWinner(arrayO[0],arrayO[1],arrayO[4],Owon); //1,2,5
+            checkWinner(arrayO[0],arrayO[2],arrayO[3],Owon); //1,3,4
+            checkWinner(arrayO[0],arrayO[2],arrayO[4],Owon); //1,3,5
+            checkWinner(arrayO[0],arrayO[3],arrayO[4],Owon); //1,4,5
+            checkWinner(arrayO[1],arrayO[2],arrayO[3],Owon); //2,3,4
+            checkWinner(arrayO[1],arrayO[3],arrayO[4],Owon); //2,3,5
+            checkWinner(arrayO[1],arrayO[3],arrayO[4],Owon); //2,4,5
+            checkWinner(arrayO[2],arrayO[4],arrayO[5],Owon); //3,4,5
+        }
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +189,97 @@ public class board extends AppCompatActivity {
 
     }
 
-    
+    public void clickedBtn1(View view){
 
+        if(symbol.equals("X")){
+            arrayX[arrayXCounter++]=1;
+
+            if(arrayX.length >= 3){
+                runCheckWinnerForX();
+
+            }
+
+        }else{
+            arrayO[arrayOCounter++] = 1;
+            if(arrayO.length >= 3){
+                runCheckWinnerForO();
+
+            }
+        }
+    }
+
+    public void clickedBtn2(View view){
+
+        if(symbol.equals("X")){
+            arrayX[arrayXCounter++]=2;
+
+            if(arrayX.length >= 3){
+                runCheckWinnerForX();
+
+            }
+
+        }else {
+            arrayO[arrayOCounter++] = 2;
+            if(arrayX.length >= 3){
+                runCheckWinnerForX();
+
+            }
+        }
+    }
+
+    public void clickedBtn3(View view){
+
+        if(symbol.equals("X")){
+            arrayX[arrayXCounter++]=3;
+
+        }else arrayO[arrayOCounter++] = 3;
+    }
+
+    public void clickedBtn4(View view){
+
+        if(symbol.equals("X")){
+            arrayX[arrayXCounter++]=4;
+
+        }else arrayO[arrayOCounter++] = 4;
+    }
+
+    public void clickedBtn5(View view){
+
+        if(symbol.equals("X")){
+            arrayX[arrayXCounter++]=5;
+
+        }else arrayO[arrayOCounter++] = 5;
+    }
+
+    public void clickedBtn6(View view){
+
+        if(symbol.equals("X")){
+            arrayX[arrayXCounter++]=6;
+
+        }else arrayO[arrayOCounter++] = 6;
+    }
+
+    public void clickedBtn7(View view){
+
+        if(symbol.equals("X")){
+            arrayX[arrayXCounter++]=7;
+
+        }else arrayO[arrayOCounter++] = 7;
+    }
+
+    public void clickedBtn8(View view){
+
+        if(symbol.equals("X")){
+            arrayX[arrayXCounter++]=8;
+
+        }else arrayO[arrayOCounter++] = 8;
+    }
+
+    public void clickedBtn9(View view){
+
+        if(symbol.equals("X")){
+            arrayX[arrayXCounter++]=9;
+
+        }else arrayO[arrayOCounter++] = 9;
+    }
 }
