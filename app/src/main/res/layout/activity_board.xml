@@ -13,39 +13,22 @@
         android:orientation="horizontal">
 
         <Button
+            android:onClick="clickedBtn1"
+            android:id="@+id/btn1"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="1"/>
         <Button
+            android:onClick="clickedBtn2"
+            android:id="@+id/btn2"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="1"/>
         <Button
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="1"/>
-
-    </LinearLayout>
-
-    <LinearLayout android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="1"/>
-        <Button
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="1"/>
-        <Button
+            android:onClick="clickedBtn3"
+            android:id="@+id/btn3"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -59,16 +42,51 @@
         android:orientation="horizontal">
 
         <Button
+            android:onClick="clickedBtn4"
+            android:id="@+id/btn4"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="1"/>
         <Button
+            android:onClick="clickedBtn5"
+            android:id="@+id/btn5"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="1"/>
         <Button
+            android:onClick="clickedBtn6"
+            android:id="@+id/btn6"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:onClick="clickedBtn7"
+            android:id="@+id/btn7"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="1"/>
+        <Button
+            android:onClick="clickedBtn8"
+            android:id="@+id/btn8"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="1"/>
+        <Button
+            android:onClick="clickedBtn9"
+            android:id="@+id/btn9"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -77,6 +95,8 @@
     </LinearLayout>
 
     <Button
+        android:onClick="clickedBtnReset"
+        android:id="@+id/resetBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
