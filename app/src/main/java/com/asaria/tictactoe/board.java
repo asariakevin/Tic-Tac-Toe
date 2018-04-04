@@ -232,14 +232,14 @@ public class board extends AppCompatActivity {
         if(symbol.equals("X")){
             arrayX[arrayXCounter++]=2;
 
-            if(arrayX.length >= 3){
+            if(arrayXCounter >= 3){
                 runCheckWinnerForX();
 
             }
 
         }else {
             arrayO[arrayOCounter++] = 2;
-            if(arrayX.length >= 3){
+            if(arrayXCounter >= 3){
                 runCheckWinnerForX();
 
             }
@@ -278,7 +278,7 @@ public class board extends AppCompatActivity {
         if(symbol.equals("X")){
             arrayX[arrayXCounter++]=5;
 
-            if(arrayX.length >= 3){
+            if(arrayXCounter >= 3){
                 runCheckWinnerForX();
 
             }
@@ -294,7 +294,7 @@ public class board extends AppCompatActivity {
         if(symbol.equals("X")){
             arrayX[arrayXCounter++]=6;
 
-            if(arrayX.length >= 3){
+            if(arrayXCounter >= 3){
                 runCheckWinnerForX();
 
             }
@@ -312,7 +312,7 @@ public class board extends AppCompatActivity {
         if(symbol.equals("X")){
             arrayX[arrayXCounter++]=7;
 
-            if(arrayX.length >= 3){
+            if(arrayXCounter >= 3){
                 runCheckWinnerForX();
 
             }
@@ -330,7 +330,7 @@ public class board extends AppCompatActivity {
         if(symbol.equals("X")){
             arrayX[arrayXCounter++]=8;
 
-            if(arrayX.length >= 3){
+            if(arrayXCounter >= 3){
                 runCheckWinnerForX();
 
             }
@@ -350,7 +350,7 @@ public class board extends AppCompatActivity {
         if(symbol.equals("X")){
             arrayX[arrayXCounter++]=9;
 
-            if(arrayX.length >= 3){
+            if(arrayXCounter >= 3){
                 runCheckWinnerForX();
 
             }
@@ -375,7 +375,7 @@ public class board extends AppCompatActivity {
             Button bt1 = (Button) findViewById(R.id.btn1);
             bt1.setText(symbol);
 
-            if(arrayX.length >= 3){
+            if(arrayXCounter >= 3){
                 runCheckWinnerForX();
 
             }
