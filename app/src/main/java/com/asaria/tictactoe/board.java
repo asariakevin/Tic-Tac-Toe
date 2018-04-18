@@ -6,389 +6,433 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+
+
+import java.util.Random;
 
 public class board extends AppCompatActivity {
-    Button[] buts = new Button[15];
-    String symbol = "X"; //default symbol
-
-    Integer Xwon = 0,Owon = 0; //0 for false
-
-    Integer arrayXCounter = 0,arrayOCounter = 0; //counter of elements in the arrays
-    int[] arrayX = new int[50];
-    int[] arrayO = new int[5];
 
 
-    //checks if the arrangement of any symbol results in a win and if so sets its flag to 1
-    public  void checkWinner(int first,int second,int third,Integer whoWon){
-        Log.d("checkWinner","checkWinner Executed");
-        if(first == 1){
 
 
-            if((second == 2 && third == 3)||(second == 3 && third == 2)){
-                Xwon = 1;
+    private int [] buttonsPressed = new int[9]; //to hold the ids of buttons that have been pressed
+    private int numberOfButtonsPressed = 0; //
+    private char currentPlayerMark = 'x';
+    char[] board = new char[9];
+    Button arr[] = new Button[9];
+    private int[] buttonsNotPressed = {8,7,6,5,4,3,2,1,0};
+    int number_of_buttonsNotPressed = 9;
 
-            }else if((second == 4 && third == 7)||(second == 7 && third == 4)){
-                Xwon = 1;
-            }else if((second == 5 && third == 9)||(second == 9 && third == 5)){
-                Xwon = 1;
-            }
-        }else if(first == 2){
+    boolean Xwon = false,Owon = false;
 
-            if((second == 1 && third == 3)||(second == 3 && third == 1)){
-                Xwon = 1;
+    int winsX = 0;
+    int winsO = 0;
+    char winner;
 
-            }else if((second == 5 && third == 8)||(second == 8 && third == 5)){
-                Xwon = 1;
-            }
-        }else if(first == 3){
-
-            if((second == 1 && third == 2)||(second == 2 && third == 1)){
-                Xwon = 1;
-
-            }else if((second == 6 && third == 9)||(second == 9 && third == 6)){
-                Xwon = 1;
-            }else if((second == 5 && third == 7)||(second == 7 && third == 5)){
-                Xwon = 1;
-            }
-        }else if(first == 4){
-
-            if((second == 1 && third == 7)||(second == 7 && third == 1)){
-                Xwon = 1;
-
-            }else if((second == 5 && third == 6)||(second == 6 && third == 5)){
-                Xwon = 1;
-            }
-        }else if(first == 5){
-
-            if((second == 4 && third == 6)||(second == 6 && third == 4)){
-                Xwon = 1;
-
-            }else if((second == 3 && third == 7)||(second == 7 && third == 3)){
-                Xwon = 1;
-            }else if((second == 1 && third == 9)||(second == 9 && third == 1)){
-                Xwon = 1;
-            }
-        }else if(first == 6){
-
-            if((second == 9 && third == 3)||(second == 3 && third == 9)){
-                Xwon = 1;
-
-            }else if((second == 4 && third == 5)||(second == 5 && third == 4)){
-                Xwon = 1;
-            }
-        }else if(first == 7){
-
-            if((second == 5 && third == 3)||(second == 3 && third == 5)){
-                Xwon = 1;
-
-            }else if((second == 4 && third == 1)||(second == 1 && third == 4)){
-                Xwon = 1;
-            }else if((second == 8 && third == 9)||(second == 9 && third == 8)){
-                Xwon = 1;
-            }
-        }else if(first == 8){
-
-            if((second == 2 && third == 5)||(second == 5 && third == 2)){
-                Xwon = 1;
-
-            }else if((second == 9 && third == 7)||(second == 7 && third == 9)){
-                Xwon = 1;
-            }
-        }else if(first == 9){
-
-            if((second == 6 && third == 3)||(second == 3 && third == 6)){
-                Xwon = 1;
-
-            }else if((second == 8 && third == 7)||(second == 7 && third == 8)){
-                Xwon = 1;
-            }else if((second == 5 && third == 1)||(second == 1 && third == 5)){
-                Xwon = 1;
-            }
-        }
-
-    }
-
-    //to check if the arrangements of X is a win
-    public void runCheckWinnerForX(){
-
-        Log.d("runCheckWinnerForX","runCheckWinnerForX Executed");
-
-    /*    checkWinner(arrayX[0],arrayX[1],arrayX[2],Xwon);
-        Log.d("arrayX.length","L 3");
+    boolean btn1Pressed=false,btn2Pressed=false,btn3Pressed=false,btn4pressed=false,btn5Pressed=false,btn6Pressed=false,
+            btn7Pressed=false,btn8Pressed=false,btn9Pressed=false;
 
 
-        Log.d("arrayX.length","L 4");
-        if(Xwon != 1){
-            checkWinner(arrayX[0],arrayX[2],arrayX[4],Xwon);
-            checkWinner(arrayX[1],arrayX[2],arrayX[3],Xwon);
-
-
-        }
-
-        checkWinner(arrayX[0],arrayX[1],arrayX[2],Xwon); //1,2,3
-        checkWinner(arrayX[0],arrayX[1],arrayX[3],Xwon); //1,2,4
-        checkWinner(arrayX[0],arrayX[1],arrayX[4],Xwon); //1,2,5
-        checkWinner(arrayX[0],arrayX[2],arrayX[3],Xwon); //1,3,4
-        checkWinner(arrayX[0],arrayX[2],arrayX[4],Xwon); //1,3,5
-        checkWinner(arrayX[0],arrayX[3],arrayX[4],Xwon); //1,4,5
-        checkWinner(arrayX[1],arrayX[2],arrayX[3],Xwon); //2,3,4
-        checkWinner(arrayX[1],arrayX[3],arrayX[4],Xwon); //2,3,5
-        checkWinner(arrayX[1],arrayX[3],arrayX[4],Xwon); //2,4,5
-        checkWinner(arrayX[2],arrayX[4],arrayX[5],Xwon); //3,4,5
-
-        Log.d("arrayX.length","L 5");*/
-
-
-       if(arrayXCounter == 3){
-            checkWinner(arrayX[0],arrayX[1],arrayX[2],Xwon);
-            Log.d("arrayX.length","L 3");
-        }else if(arrayXCounter == 4){
-            checkWinner(arrayX[0],arrayX[1],arrayX[2],Xwon);
-            Log.d("arrayX.length","L 4");
-            if(Xwon != 1){
-                checkWinner(arrayX[0],arrayX[1],arrayX[3],Xwon);
-                checkWinner(arrayX[0],arrayX[2],arrayX[3],Xwon);
-                checkWinner(arrayX[1],arrayX[2],arrayX[3],Xwon);
-
-
-            }
-        }else if(arrayXCounter == 5){
-            checkWinner(arrayX[0],arrayX[1],arrayX[2],Xwon); //1,2,3
-            checkWinner(arrayX[0],arrayX[1],arrayX[3],Xwon); //1,2,4
-            checkWinner(arrayX[0],arrayX[1],arrayX[4],Xwon); //1,2,5
-            checkWinner(arrayX[0],arrayX[2],arrayX[3],Xwon); //1,3,4
-            checkWinner(arrayX[0],arrayX[2],arrayX[4],Xwon); //1,3,5
-            checkWinner(arrayX[0],arrayX[3],arrayX[4],Xwon); //1,4,5
-            checkWinner(arrayX[1],arrayX[2],arrayX[3],Xwon); //2,3,4
-            checkWinner(arrayX[1],arrayX[3],arrayX[4],Xwon); //2,3,5
-            checkWinner(arrayX[1],arrayX[3],arrayX[4],Xwon); //2,4,5
-            checkWinner(arrayX[2],arrayX[4],arrayX[5],Xwon); //3,4,5
-
-            Log.d("arrayX.length","L 5");
-        }
-
-    }
-
-
-    public void runCheckWinnerForO(){
-        if(arrayO.length == 3){
-            checkWinner(arrayO[0],arrayO[1],arrayO[2],Owon);
-        }else if(arrayO.length == 4){
-            checkWinner(arrayO[0],arrayO[1],arrayO[2],Owon);
-
-            if(Owon != 1){
-                checkWinner(arrayO[0],arrayO[2],arrayO[4],Owon);
-                checkWinner(arrayO[1],arrayO[2],arrayO[3],Owon);
-
-
-            }
-        }else if(arrayO.length == 5){
-            checkWinner(arrayO[0],arrayO[1],arrayO[2],Owon); //1,2,3
-            checkWinner(arrayO[0],arrayO[1],arrayO[3],Owon); //1,2,4
-            checkWinner(arrayO[0],arrayO[1],arrayO[4],Owon); //1,2,5
-            checkWinner(arrayO[0],arrayO[2],arrayO[3],Owon); //1,3,4
-            checkWinner(arrayO[0],arrayO[2],arrayO[4],Owon); //1,3,5
-            checkWinner(arrayO[0],arrayO[3],arrayO[4],Owon); //1,4,5
-            checkWinner(arrayO[1],arrayO[2],arrayO[3],Owon); //2,3,4
-            checkWinner(arrayO[1],arrayO[3],arrayO[4],Owon); //2,3,5
-            checkWinner(arrayO[1],arrayO[3],arrayO[4],Owon); //2,4,5
-            checkWinner(arrayO[2],arrayO[4],arrayO[5],Owon); //3,4,5
-        }
-
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //to get the char the player has choosen
+        Intent in = getIntent();
+        Bundle symbol = in.getExtras();
+
+        currentPlayerMark = symbol.getChar("symbol");
+
+
         setContentView(R.layout.activity_board);
 
+        arr[0] = (Button) findViewById(R.id.btn1);
+        arr[1] = (Button) findViewById(R.id.btn2);
+        arr[2] = (Button) findViewById(R.id.btn3);
+        arr[3] = (Button) findViewById(R.id.btn4);
+        arr[4] = (Button) findViewById(R.id.btn5);
+        arr[5] = (Button) findViewById(R.id.btn6);
+
+        arr[6] = (Button) findViewById(R.id.btn7);
+        arr[7] = (Button) findViewById(R.id.btn8);
+        arr[8] = (Button) findViewById(R.id.btn9);
 
 
-
-        buts[0] = (Button) findViewById(R.id.btn1);
-        buts[1] = (Button) findViewById(R.id.btn2);
-        buts[2] = (Button) findViewById(R.id.btn3);
-        buts[3] = (Button) findViewById(R.id.btn4);
-        buts[4] = (Button) findViewById(R.id.btn5);
-        buts[5] = (Button) findViewById(R.id.btn6);
-        buts[6] = (Button) findViewById(R.id.btn7);
-        buts[7] = (Button) findViewById(R.id.btn8);
-        buts[8] = (Button) findViewById(R.id.btn9);
-        buts[9] = (Button) findViewById(R.id.btn10);
-        buts[10] = (Button) findViewById(R.id.btn11);
-        buts[11] = (Button) findViewById(R.id.btn12);
-        buts[12] = (Button) findViewById(R.id.btn13);
-        buts[13] = (Button) findViewById(R.id.btn14);
-        buts[14] = (Button) findViewById(R.id.btn15);
-
-
-
-
+        for(int i = 0;i < 9;i++){
+            board[i] = '-';
+        }
     }
 
+    //to search for the index of a number in buttonsNotPressed
+    public int search(int numberToBeSearched){
+        int position  = 10; //default position
 
+        for(int i = 0;i < number_of_buttonsNotPressed;i++){
 
-    public void clickedBtn2(View view){
-
-        if(symbol.equals("X")){
-            arrayX[arrayXCounter++]=2;
-
-            if(arrayXCounter >= 3){
-                runCheckWinnerForX();
-
-            }
-
-        }else {
-            arrayO[arrayOCounter++] = 2;
-            if(arrayXCounter >= 3){
-                runCheckWinnerForX();
-
+            if(buttonsNotPressed[i] == numberToBeSearched){
+                position = i;
+                break;
             }
         }
 
-        buts[1].setText(symbol);
+        return position;
+
     }
 
-    public void clickedBtn3(View view){
+    //to remove a button that has been pressed from buttonsNotPressed array
+    public void remove(int button){
+        int index = search(button);
 
-        if(symbol.equals("X")){
-            arrayX[arrayXCounter++]=3;
-            runCheckWinnerForX();
-        }else arrayO[arrayOCounter++] = 3;
+        if( index != number_of_buttonsNotPressed - 1) {
 
-        buts[2].setText(symbol);
-        Log.d("Xwon",Xwon.toString());
-        Log.d("arrayXCounter",arrayXCounter.toString());
-    }
 
-    public void clickedBtn4(View view){
-
-        if(symbol.equals("X")){
-            arrayX[arrayXCounter++]=4;
-
-        }else arrayO[arrayOCounter++] = 4;
-
-        buts[3].setText(symbol);
-
-        Log.d("Xwon",Xwon.toString());
-        Log.d("arrayXCounter",arrayXCounter.toString());
-    }
-
-    public void clickedBtn5(View view){
-
-        if(symbol.equals("X")){
-            arrayX[arrayXCounter++]=5;
-
-            if(arrayXCounter >= 3){
-                runCheckWinnerForX();
-
+            //minus one note
+            for (int i = index; i < number_of_buttonsNotPressed - 1; i++) {
+                buttonsNotPressed[i] = buttonsNotPressed[i + 1];
             }
-
-
-        }else arrayO[arrayOCounter++] = 5;
-
-        buts[4].setText(symbol);
-    }
-
-    public void clickedBtn6(View view){
-
-        if(symbol.equals("X")){
-            arrayX[arrayXCounter++]=6;
-
-            if(arrayXCounter >= 3){
-                runCheckWinnerForX();
-
-            }
-
-        }else arrayO[arrayOCounter++] = 6;
-
-        buts[5].setText(symbol);
-
-        Log.d("Xwon",Xwon.toString());
-        Log.d("arrayXCounter",arrayXCounter.toString());
-    }
-
-    public void clickedBtn7(View view){
-
-        if(symbol.equals("X")){
-            arrayX[arrayXCounter++]=7;
-
-            if(arrayXCounter >= 3){
-                runCheckWinnerForX();
-
-            }
-
-        }else arrayO[arrayOCounter++] = 7;
-
-        buts[6].setText(symbol);
-
-        Log.d("Xwon",Xwon.toString());
-        Log.d("arrayXCounter",arrayXCounter.toString());
-    }
-
-    public void clickedBtn8(View view){
-
-        if(symbol.equals("X")){
-            arrayX[arrayXCounter++]=8;
-
-            if(arrayXCounter >= 3){
-                runCheckWinnerForX();
-
-            }
-
-
-
-        }else arrayO[arrayOCounter++] = 8;
-
-        buts[7].setText(symbol);
-
-        Log.d("Xwon",Xwon.toString());
-        Log.d("arrayXCounter",arrayXCounter.toString());
-    }
-
-    public void clickedBtn9(View view){
-
-        if(symbol.equals("X")){
-            arrayX[arrayXCounter++]=9;
-
-            if(arrayXCounter >= 3){
-                runCheckWinnerForX();
-
-            }
-
-        }else arrayO[arrayOCounter++] = 9;
-
-        buts[8].setText(symbol);
-
-        if(Xwon == 1){
-
-            startActivity(new Intent(this,board5.class));
-        }
-        Log.d("Xwon",Xwon.toString());
-        Log.d("arrayXCounter",arrayXCounter.toString());
-    }
-
-    public void clickedBtn1(View view){
-
-        if(symbol.equals("X")){
-            arrayX[arrayXCounter++]=1; //add the int 1 to arrayX
-
-            Button bt1 = (Button) findViewById(R.id.btn1);
-            bt1.setText(symbol);
-
-            if(arrayXCounter >= 3){
-                runCheckWinnerForX();
-
-            }
-
         }else{
-            arrayO[arrayOCounter++] = 1;
-            if(arrayO.length >= 3){
-                runCheckWinnerForO();
 
-            }
+            Log.d("remove","last index detected");
+        }
+        number_of_buttonsNotPressed--;
+
+        for(int i = 0;i < number_of_buttonsNotPressed;i++){
+            Log.d("buttonsPressed"+Integer.toString(i),Integer.toString(buttonsNotPressed[i]));
         }
 
-        Log.d("Xwon",Xwon.toString());
-        Log.d("arrayXCounter",arrayXCounter.toString());
+    }
+
+
+
+
+    public void changePlayer() {
+
+
+        if (currentPlayerMark == 'x') {
+            currentPlayerMark = 'o';
+        } else {
+            currentPlayerMark = 'x';
+        }
+
+
+    }
+
+    public void clickedBtnReset(View v) {
+        arr[0].setText(Character.toString(' '));
+        arr[1].setText(Character.toString(' '));
+        arr[2].setText(Character.toString(' '));
+        arr[3].setText(Character.toString(' '));
+        arr[4].setText(Character.toString(' '));
+        arr[5].setText(Character.toString(' '));
+        arr[6].setText(Character.toString(' '));
+        arr[7].setText(Character.toString(' '));
+        arr[8].setText(Character.toString(' '));
+
+        for(int i = 0;i < 9;i++){
+            board[i] = '-';
+        }
+
+        buttonsNotPressed[0]=0;
+        buttonsNotPressed[1]=1;
+        buttonsNotPressed[2]=2;
+        buttonsNotPressed[3]=3;
+        buttonsNotPressed[4]=4;
+        buttonsNotPressed[5]=5;
+        buttonsNotPressed[6]=6;
+        buttonsNotPressed[7]=7;
+        buttonsNotPressed[8]=8;
+
+        number_of_buttonsNotPressed = 9;
+        numberOfButtonsPressed = 0;
+
+        //to get the char the player has choosen
+        Intent in = getIntent();
+        Bundle symbol = in.getExtras();
+
+        currentPlayerMark = symbol.getChar("symbol");
+
+
+
+        btn1Pressed=false;
+        btn2Pressed=false;
+        btn3Pressed=false;
+        btn4pressed=false;
+        btn5Pressed=false;
+        btn6Pressed=false;
+        btn7Pressed=false;
+        btn8Pressed=false;
+        btn9Pressed=false;
+
+    }
+
+    public void updateScoreLoses(){
+        TextView losesTextView = (TextView) findViewById(R.id.playerX);
+        losesTextView.setText(Integer.toString(winsX));
+
+    }
+    public void updateScoreWins() {
+        TextView winsTextView = (TextView) findViewById(R.id.playerO);
+        winsTextView.setText(Integer.toString(winsO));
+
+    }
+
+
+
+    public void clickedBtn1(View view) {
+        if(!btn1Pressed){
+            btn1Pressed = true;
+            arr[0].setText(Character.toString(currentPlayerMark));
+            board[0] = currentPlayerMark;
+            buttonsPressed[numberOfButtonsPressed++] = 0;
+            remove(0);
+            changePlayer();
+            playerMarkO();
+            checkForWinner();
+            updateScoreLoses();
+            updateScoreWins();
+            Log.d("checkRows",Boolean.toString(checkRowsForWin()));
+            Log.d("checkCol",Boolean.toString(checkColsForWin()));
+            Log.d("checkDiagnol",Boolean.toString(checkDiagnolsForWin()));        }
+
+    }
+
+    public void clickedBtn2(View view) {
+        if(!btn2Pressed){
+            btn2Pressed = true;
+            arr[1].setText(Character.toString(currentPlayerMark));
+            board[1] = currentPlayerMark;
+            buttonsPressed[numberOfButtonsPressed++] = 1;
+
+            changePlayer();
+            remove(1);
+            playerMarkO();
+            checkForWinner();
+
+            updateScoreWins();
+            updateScoreLoses();
+        }
+
+    }
+
+    public void clickedBtn3(View view) {
+
+        if(!btn3Pressed){
+            btn3Pressed = true;
+            arr[2].setText(Character.toString(currentPlayerMark));
+            board[2] = currentPlayerMark;
+            buttonsPressed[numberOfButtonsPressed++] = 2;
+            changePlayer();
+            remove(2);
+            playerMarkO();
+            checkForWinner();
+
+            updateScoreWins();
+            updateScoreLoses();
+        }
+
+
+    }
+
+    public void clickedBtn4(View view) {
+
+        if(!btn4pressed){
+            btn4pressed = true;
+            arr[3].setText(Character.toString(currentPlayerMark));
+            board[3] = currentPlayerMark;
+            buttonsPressed[numberOfButtonsPressed++] = 3;
+            changePlayer();
+            remove(3);
+            playerMarkO();
+            checkForWinner();
+
+            updateScoreWins();
+            updateScoreLoses();
+        }
+
+
+    }
+
+    public void clickedBtn5(View view) {
+
+        if(!btn5Pressed){
+            btn5Pressed = true;
+            arr[4].setText(Character.toString(currentPlayerMark));
+            board[4] = currentPlayerMark;
+            buttonsPressed[numberOfButtonsPressed++] = 4;
+            changePlayer();
+            remove(4);
+            playerMarkO();
+            checkForWinner();
+
+            updateScoreWins();
+            updateScoreLoses();
+        }
+
+    }
+
+    public void clickedBtn6(View view) {
+
+        if(!btn6Pressed){
+            btn6Pressed =  true;
+            arr[5].setText(Character.toString(currentPlayerMark));
+            board[5] = currentPlayerMark;
+            buttonsPressed[numberOfButtonsPressed++] = 5;
+            changePlayer();
+            remove(5);
+            playerMarkO();
+            checkForWinner();
+
+            updateScoreWins();
+            updateScoreLoses();
+
+        }
+
+    }
+
+    public void clickedBtn7(View view) {
+        if(!btn7Pressed){
+            btn7Pressed = true;
+            arr[6].setText(Character.toString(currentPlayerMark));
+            board[6] = currentPlayerMark;
+            buttonsPressed[numberOfButtonsPressed++] = 6;
+
+            changePlayer();
+            remove(6);
+            playerMarkO();
+            checkForWinner();
+
+            updateScoreWins();
+            updateScoreLoses();
+        }
+
+
+    }
+
+    public void clickedBtn8(View view) {
+
+        if(!btn8Pressed){
+            btn8Pressed = true;
+            arr[7].setText(Character.toString(currentPlayerMark));
+            board[7] = currentPlayerMark;
+            buttonsPressed[numberOfButtonsPressed++] = 7;
+
+            changePlayer();
+            remove(7);
+            playerMarkO();
+            checkForWinner();
+
+            updateScoreWins();
+            updateScoreLoses();
+        }
+
+    }
+
+    public void clickedBtn9(View view) {
+
+
+        if(!btn9Pressed){
+            btn9Pressed = true;
+            arr[8].setText(Character.toString(currentPlayerMark));
+            board[8] = currentPlayerMark;
+            buttonsPressed[numberOfButtonsPressed++] = 8;
+
+
+            changePlayer();
+            remove(8);
+            playerMarkO();
+            checkForWinner();
+
+            updateScoreWins();
+            updateScoreLoses();
+        }
+
+    }
+
+    public void playerMarkO() {
+
+        //because all buttons would have been pressed
+        if(number_of_buttonsNotPressed > 0){
+
+
+                Random r = new Random();
+                int random = r.nextInt(number_of_buttonsNotPressed);
+                Log.d("random index",Integer.toString(random));
+
+                int index = buttonsNotPressed[random];
+                Log.d("value of randomIndex",Integer.toString(index));
+                arr[index].setText(Character.toString(currentPlayerMark));
+                board[index] = currentPlayerMark;
+                if(index == 0)
+                    btn1Pressed = true;
+                else if(index == 1) btn2Pressed = true;
+                else if(index == 2) btn3Pressed = true;
+                else if(index == 3) btn4pressed = true;
+                else if(index == 4) btn5Pressed = true;
+                else if (index == 5) btn6Pressed = true;
+                else if(index == 6) btn7Pressed = true;
+                else if(index == 7) btn8Pressed = true;
+                else if(index == 8) btn9Pressed = true;
+                remove(index);
+
+
+                changePlayer();
+
+
+        }
+
+    }
+
+    private boolean checkText(char c1, char c2, char c3) {
+        if ((c1 == 'x') && (c1 == c2) && (c2 == c3)){
+
+            winsX++;
+            winner = 'x';
+            return true;
+        }else if((c1 == 'o') && (c1 == c2) && (c2 == c3)){
+
+            winsO++;
+            winner = 'o';
+            return true;
+        }else return false;
+
+
+    }
+
+
+    private boolean checkRowsForWin() {
+        if (checkText(board[0], board[1], board[2]))
+            return true;
+        else if (checkText(board[3], board[4], board[5]))
+            return true;
+        else if (checkText(board[6], board[7], board[8]))
+            return true;
+        else return false;
+    }
+
+
+    private boolean checkColsForWin() {
+        if (checkText(board[0], board[3], board[6]))
+            return true;
+        else if (checkText(board[1], board[4], board[7]))
+            return true;
+        else if (checkText(board[2], board[5], board[8]))
+            return true;
+        else return false;
+    }
+
+
+    private boolean checkDiagnolsForWin(){
+        if (checkText(board[0],board[4],board[8]))
+            return true;
+        else if (checkText(board[2],board[4],board[6]))
+            return true;
+        else return false;
+    }
+
+    private boolean checkForWinner(){
+        return(checkColsForWin()||checkRowsForWin()||checkDiagnolsForWin());
+
     }
 }

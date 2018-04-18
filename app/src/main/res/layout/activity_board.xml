@@ -7,7 +7,62 @@
     android:orientation="vertical"
     tools:context="com.asaria.tictactoe.board">
 
-    <LinearLayout android:layout_weight="1"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="X"
+
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="O"
+
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:id="@+id/playerX"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:id="@+id/playerO"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal">
@@ -18,25 +73,25 @@
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="1"/>
+            />
         <Button
             android:onClick="clickedBtn2"
             android:id="@+id/btn2"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="1"/>
+            />
         <Button
             android:onClick="clickedBtn3"
             android:id="@+id/btn3"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="1"/>
+            />
 
     </LinearLayout>
 
-    <LinearLayout android:layout_weight="1"
+    <LinearLayout android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal">
@@ -47,25 +102,25 @@
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="1"/>
+            />
         <Button
             android:onClick="clickedBtn5"
             android:id="@+id/btn5"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="1"/>
+            />
         <Button
             android:onClick="clickedBtn6"
             android:id="@+id/btn6"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="1"/>
+            />
 
     </LinearLayout>
 
-    <LinearLayout android:layout_weight="1"
+    <LinearLayout android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal">
@@ -76,21 +131,21 @@
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="1"/>
+            />
         <Button
             android:onClick="clickedBtn8"
             android:id="@+id/btn8"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="1"/>
+            />
         <Button
             android:onClick="clickedBtn9"
             android:id="@+id/btn9"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="1"/>
+            />
 
     </LinearLayout>
 

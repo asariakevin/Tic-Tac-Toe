@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     boolean threeOn = false;
     boolean fiveOn = false;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,15 +94,15 @@ public class MainActivity extends AppCompatActivity {
             if (grid == 3){
                 Intent board3X3 = new Intent(this , board.class);
                 if(playerSymbol == 1)
-                    board3X3.putExtra("symbol","X");
-                else board3X3.putExtra("symbol","O");
+                    board3X3.putExtra("symbol",'x');
+                else board3X3.putExtra("symbol",'o');
                 startActivity(board3X3);
 
             }else{
                 Intent board5X5 = new Intent(this,board5.class);
                 if(playerSymbol == 1)
-                    board5X5.putExtra("symbol","X");
-                else board5X5.putExtra("symbol","O");
+                    board5X5.putExtra("symbol",'x');
+                else board5X5.putExtra("symbol",'o');
                 startActivity(board5X5);}
 
         }
